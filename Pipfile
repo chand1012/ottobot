@@ -7,6 +7,8 @@ name = "pypi"
 nextcord = "*"
 openai = "*"
 python-dotenv = "*"
+tiktoken = "*"
+loguru = "*"
 
 [dev-packages]
 autopep8 = "*"
