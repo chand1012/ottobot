@@ -20,12 +20,12 @@ intents.message_content = True
 
 bot = commands.Bot(intents=intents, help_command=None)
 
-allowed_models = ['gpt-4', 'gpt-3.5-turbo']
-
 MAX_TOKENS = {
     "gpt-4": 8192,
     "gpt-3.5-turbo": 4096,
 }
+
+allowed_models = MAX_TOKENS.keys()
 
 enc = tiktoken.get_encoding("cl100k_base")
 
@@ -63,7 +63,7 @@ async def on_message(message: nextcord.Message):
         model = message.channel.name[5:]
         # check if the model is allowed
         if model not in allowed_models:
-            return
+            model = "gpt-3.5-turbo"
         # get the prompt from the user. Its the just sent message
         prompt = message.content
         tokens = count_tokens(prompt)
